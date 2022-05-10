@@ -1,0 +1,7 @@
+/.env
+/.idea
+/.vscode
+/public/.htaccess
+/public/nginx.htaccess
+/vendor
+/runtime
