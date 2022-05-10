@@ -19,4 +19,3 @@ require ROOT_PATH . 'helpers\kernel\AppService.php';
 
 //运行框架
 app\helpers\kernel\AppService::run();
-

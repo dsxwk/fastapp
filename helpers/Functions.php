@@ -2,6 +2,32 @@
 
 //公共函数
 
+if (!function_exists('config')) {
+    /**
+     * 加载配置
+     * @param $name
+     * @param $value
+     * @return array|mixed|void
+     */
+    function config($name = '', $value = '')
+    {
+        static $config = [];
+        if (empty($name) && empty($value)) {
+            return $config;
+        }
+        if (is_string($name) && empty($value)) {
+            return $config[$name];
+        } elseif (is_string($name) && !empty($value)) {
+            $config[$name] = $value;
+        }
+        if (is_array($name) && empty($value)) {
+            foreach ($name as $k => $v) {
+                $config[$k] = $v;
+            }
+        }
+    }
+}
+
 if (!function_exists('dd')) {
     /**
      * 自定义打印输出

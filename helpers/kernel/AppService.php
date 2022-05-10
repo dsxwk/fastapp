@@ -16,6 +16,10 @@ class AppService
      */
     public static function run()
     {
+        //session_start();
+        //把配置文件中的配置信息写入config()函数中去
+        config(require ROOT_PATH . 'config/app.php');
+        //dd(config());
         //注册一个自动加载函数方法
         spl_autoload_register('static::autoload');
 
@@ -124,17 +128,17 @@ class AppService
             $pathInfo = $_SERVER['PATH_INFO'];
             $pathInfo = explode('/', trim($pathInfo, '/'));
 
-            //模块名
-            $get['module'] = array_shift($pathInfo);
-            //控制器名
-            $get['controller'] = array_shift($pathInfo);
-            //方法名
-            $get['action'] = array_shift($pathInfo);
+            //模块名module
+            $get['m'] = array_shift($pathInfo);
+            //控制器名controller
+            $get['c'] = array_shift($pathInfo);
+            //方法名action
+            $get['a'] = array_shift($pathInfo);
         }
 
         //默认index
-        define('MODULE_NAME', strtolower(empty($get['module']) ? 'index' : $get['module']));
-        define('CONTROLLER_NAME', ucfirst(strtolower(empty($get['controller']) ? 'index' : $get['controller'])));
-        define('ACTION_NAME', strtolower(empty($get['action']) ? 'index' : $get['action']));
+        define('MODULE_NAME', strtolower(empty($get['m']) ? 'index' : $get['m']));
+        define('CONTROLLER_NAME', ucfirst(strtolower(empty($get['c']) ? 'index' : $get['c'])));
+        define('ACTION_NAME', strtolower(empty($get['a']) ? 'index' : $get['a']));
     }
 }
