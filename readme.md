@@ -1,6 +1,6 @@
 #安装
 ````
-composer install
+composer create-project dsxwk/fastapp
 ````
 
 #Nginx rewrite 配置
