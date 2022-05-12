@@ -1,7 +1,7 @@
 {
     "name": "dsxwk/fastapp",
     "description": "framework ORM",
-    "type": "2",
+    "type": "project",
     "require-dev": {
         "php": ">=7.0"
     },
