@@ -1,8 +1,9 @@
 <?php
 
 namespace app\helpers\kernel;
+use Exception;
 
-class AppService
+class Run
 {
     /**
      * 配置后缀
@@ -14,12 +15,13 @@ class AppService
      * App初始化
      * @return void
      */
-    public static function run()
+    public static function start()
     {
         //session_start();
         //把配置文件中的配置信息写入config()函数中去
         config(require ROOT_PATH . 'config/app.php');
         //dd(config());
+
         //注册一个自动加载函数方法
         spl_autoload_register('static::autoload');
 
@@ -51,36 +53,24 @@ class AppService
     /**
      * 自动加载文件
      * @param $class
-     * @return array|void
+     * @return void
+     * @throws Exception
      */
     public static function autoload($class){
         //组合成一个完整的文件路径
-        $file =  APP_PATH . str_replace('\\','/',$class) . (new AppService())->configExt;
+        $file =  ROOT_PATH . str_replace('\\','/',$class) . (new self())->configExt;
 
         //判断这个文件是否存在,若存在就加载该文件
         if(is_file($file)){
             require $file;
         }else{
-			return apiReturn(500, $file . '文件不存在！');
+            throw new Exception($file . ' 文件不存在！', 500);
 		}
     }
 
     /**
-     * 测试
-     * @return mixed
-     */
-    public static function test()
-    {
-        //命名空间的类名的拼装 'app\\index\\controllers\\Index';
-        $class =  APP_NAME . '\\' . MODULE_NAME . '\\controllers\\' . CONTROLLER_NAME;
-        $obj = new $class();
-        $action = ACTION_NAME;
-        return $obj->$action();
-    }
-
-    /**
      * 反射类
-     * @return array|mixed
+     * @return mixed
      * @throws \ReflectionException
      */
     public static function load()
@@ -112,7 +102,7 @@ class AppService
                 return $method->invoke(new $class());
             }
         } else {
-            return apiReturn(500, $class . '方法不存在！');
+            throw new Exception($class . ' ' . ACTION_NAME . '() 方法不存在！', 500);
         }
     }
 
@@ -138,7 +128,7 @@ class AppService
 
         //默认index
         define('MODULE_NAME', strtolower(empty($get['m']) ? 'index' : $get['m']));
-        define('CONTROLLER_NAME', ucfirst(strtolower(empty($get['c']) ? 'index' : $get['c'])));
+        define('CONTROLLER_NAME', ucfirst(strtolower(empty($get['c']) ? 'Index' : $get['c'])));
         define('ACTION_NAME', strtolower(empty($get['a']) ? 'index' : $get['a']));
     }
 }

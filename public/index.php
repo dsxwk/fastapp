@@ -15,7 +15,7 @@ define('ROOT_PATH', realpath(dirname(__FILE__) . '/../') . '/');
 define('APP_PATH', ROOT_PATH . 'app/');
 
 //引入核心服务
-require ROOT_PATH . 'helpers\kernel\AppService.php';
+require ROOT_PATH . 'helpers\kernel\Run.php';
 
 //运行框架
-app\helpers\kernel\AppService::run();
+app\helpers\kernel\Run::start();
