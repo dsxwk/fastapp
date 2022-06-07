@@ -11,4 +11,8 @@ return [
     'DEFAULT_URL_MODE' => 'path_info',
     //smarty模板后缀名
     'DEFAULT_TPL_SUFFIX' => '.html',
+
+    'PROVIDERS' => [
+        'db' => helpers\kernel\orm\Db::class,
+    ]
 ];

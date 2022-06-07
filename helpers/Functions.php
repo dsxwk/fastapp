@@ -28,6 +28,19 @@ if (!function_exists('config')) {
     }
 }
 
+if (!function_exists('app')) {
+    /**
+     * 获取容器实例
+     * @param $name
+     * @return mixed
+     * @throws \helpers\exception\Exception
+     */
+    function app($name = '')
+    {
+        return (new helpers\kernel\service\App())->get($name);
+    }
+}
+
 if (!function_exists('dd')) {
     /**
      * 自定义打印输出
@@ -176,5 +189,17 @@ if (!function_exists('mkdirs')) {
     function mkdirs($dir, $mode = '0777')
     {
         mkdir($dir, $mode, true);
+    }
+}
+
+if (!function_exists('snake')) {
+    /**
+     * 驼峰转下划线再转小写
+     * @param $value
+     * @return string
+     */
+    function snake($value)
+    {
+        return strtolower(preg_replace('/(.)(?=[A-Z])/u', '_$1', $value));
     }
 }

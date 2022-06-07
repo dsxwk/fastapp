@@ -1,7 +1,8 @@
 <?php
 
-namespace app\helpers\kernel;
-use Exception;
+namespace helpers\kernel;
+use helpers\exception\Exception;
+use ReflectionClass;
 
 class Run
 {
@@ -19,7 +20,7 @@ class Run
     {
         //session_start();
         //把配置文件中的配置信息写入config()函数中去
-        config(require ROOT_PATH . 'config/app.php');
+        //config(require ROOT_PATH . 'config/app.php');
         //dd(config());
 
         //注册一个自动加载函数方法
@@ -79,7 +80,7 @@ class Run
         $class =  APP_NAME . '\\' . MODULE_NAME . '\\controllers\\' . CONTROLLER_NAME;
 
         //使用反射类去执行这个类
-        $ref = new \ReflectionClass($class);
+        $ref = new ReflectionClass($class);
 
         //判断控制器类中有没有方法,$_GET中的action所对应的名字的方法
         if ($ref->hasMethod(ACTION_NAME)) {
