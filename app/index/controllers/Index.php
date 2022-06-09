@@ -11,11 +11,11 @@ class Index extends Controllers {
      */
     public function index()
     {
-        $test = User::test();
-        $this->assign('test', $test);
+        $result = User::test();
+        $this->assign('test', $result->id);
         $this->display('index');
 
-        //dd(config('DEFAULT_TPL_SUFFIX'));
+        //dd(config('default_tpl_suffix'));
         //$this->response(apiReturn());
         //$res = User::test();dd($res);
         //echo 111;

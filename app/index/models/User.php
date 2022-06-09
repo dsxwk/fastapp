@@ -1,8 +1,13 @@
 <?php
 
 namespace app\index\models;
+use helpers\kernel\orm\Model;
 
-class User {
+class User extends Model{
+    protected $dbConfig = 'default';
+    protected $type = 'pdo';
+    protected $table = 'user';
+
     /**
      * 测试
      * @return mixed
@@ -10,7 +15,10 @@ class User {
      */
     public static function test()
     {
+        $_this = new self();
         echo 'model user test' . PHP_EOL;
-        return app('db')->first();
+        //return app('db')->first();
+        $result = $_this->first();
+        return $result;
     }
 }

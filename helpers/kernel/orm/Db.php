@@ -2,30 +2,32 @@
 
 namespace helpers\kernel\orm;
 
-class Db
+class Db extends Model
 {
-    public static function first()
+    protected $dbConfig = 'default';
+
+    public function first()
     {
-        return 'first';
+
     }
 
-    public static function select()
+    public function select()
     {
-        return 'select';
+
     }
 
-    public static function insert()
+    public function insert()
     {
-        return 'insert';
+
     }
 
-    public static function update()
+    public function update()
     {
-        return 'update';
+
     }
 
-    public static function delete()
+    public function delete()
     {
-        return 'delete';
+
     }
 }

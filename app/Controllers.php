@@ -35,15 +35,15 @@ class Controllers
     {
         $tpl = '';
         //判断有没有默认模板后缀
-        if (strpos($template, config('DEFAULT_TPL_SUFFIX'))) {
+        if (strpos($template, config('default_tpl_suffix'))) {
             $tpl = $template;
         } else {
             //拼接后缀
-            $tpl = $template . config('DEFAULT_TPL_SUFFIX');
+            $tpl = $template . config('default_tpl_suffix');
         }
         if (is_null($template)) {
             //判断是否为空 默认文件拼接后缀
-            $tpl = ACTION_NAME . config('DEFAULT_TPL_SUFFIX');
+            $tpl = ACTION_NAME . config('default_tpl_suffix');
         }
 
         $this->smarty->display($tpl, $cache_id, $compile_id, $parent);

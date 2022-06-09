@@ -38,8 +38,8 @@ class App
         //把配置文件中的配置信息写入config()函数中去
         config(require ROOT_PATH . 'config/app.php');
 
-        if (!empty(config('PROVIDERS'))) {
-            $providers = config('PROVIDERS');
+        if (!empty(config('providers'))) {
+            $providers = config('providers');
             foreach ($providers as $k => $v) {
                 $this->bind($k, $v);
             }
